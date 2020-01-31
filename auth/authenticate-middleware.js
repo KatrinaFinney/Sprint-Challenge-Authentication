@@ -3,6 +3,15 @@
   before granting access to the next middleware/route handler
 */
 
-module.exports = (req, res, next) => {
-  res.status(401).json({ you: 'shall not pass!' });
-};
+module.exports = (req,res,next) => {
+
+
+if (req.session && req.session.user) {
+    next();
+
+} else {
+    res.status(401).json({ message: "I don't think so playa"});
+}
+}
+
+
